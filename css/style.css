@@ -1,0 +1,259 @@
+body {
+    font-family: Raleway;
+}
+
+/* Styly pro herní obrazovku */
+#game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+}
+
+/* Styly pro hlavní menu */
+#menu {
+    position: absolute;
+    margin-top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../img/pozadi.jpg"); /* Použití obrázku jako pozadí */
+    overflow-y: scroll; /* Povolení vertikálního skrolování */
+    overflow-x: hidden; /* Skrytí horizontálního skrolování */
+}
+
+/* Styly pro nadpis hlavního menu */
+#menu-heading {
+    position: relative;
+    margin-top: 0;
+    left: 0;
+    height: 50px;
+    width: 100vw;
+    background-color: rgb(235, 118, 215); /* Barva pozadí nadpisu */
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: 900; /* Tučnost písma */
+}
+
+/* Styly pro jednotlivá herní obtížnosti v hlavním menu */
+.lvl {
+    position: relative;
+    margin-top: 100px;
+    left: 350px;
+    right: 300px;
+    width: 1200px;
+    height: 80px;
+    color: white;
+    background-color: rgb(175, 7, 167); /* Barva pozadí obtížností */
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600; /* Tučnost písma */
+    line-height: 80px;
+    border-radius: 20px; /* Zaoblené rohy */
+}
+
+/* Styly pro herní úroveň */
+#level {
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../img/pozadi.jpg"); 
+    overflow-y: scroll; 
+    overflow-x: hidden; 
+    display: none; /* Skrytí úrovně při načtení stránky */
+}
+
+
+.lvl:hover {
+    background-color: rgb(115, 7, 119);
+}
+
+/* Styly pro zkumavky ve hře */
+.test-tube {
+    position: absolute;
+    height: 130px;
+    width: 40px;
+    border: 2px solid rgb(150,150,150);
+    border-radius: 2px 2px 20px 20px;
+    background-position: 0 10px;
+    overflow: hidden;
+    transition: 1s linear;
+    transform: rotate(0deg);
+}
+
+/* Animace zvětšení zkumavky */
+@keyframes glassAnim {
+    0%,100% {transform: scale(1);}
+    50% {transform: scale(1.05);}
+}
+
+/* Styly pro barvy ve zkumavce */
+.colors {
+    position: absolute;
+    left: 0;
+    height: 30px;
+    width: 40px;
+}
+
+/* Styly pro vítěznou obrazovku */
+#won {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100vw;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 900; /* Tučnost písma */
+}
+
+/* Bílé pozadí pro animaci přelévání vody */
+#white-bg {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 40px;
+    height: 10px;
+    background-image: url("../img/pozadi.jpg");
+    z-index: 1000;
+    transition: 1s;
+}
+
+/* Barevné pozadí pro animaci přelévání vody */
+#colorful-bg {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    z-index: 1000;
+    transition: 1s;
+}
+
+/* Tlačítka pro restart a návrat do menu */
+#restart {
+    left: 0;
+}
+
+#home {
+    left: calc(100vw - 150px);
+}
+
+/* Společné styly pro tlačítka ve hře */
+.game-buttons {
+    position: fixed;
+    top: calc(100vh - 50px);
+    height: 50px;
+    width: 150px;
+    font-size: 25px;
+    font-weight: 600; /* Tučnost písma */
+    text-align: center;
+    line-height: 50px;
+    background-color: rgb(115, 7, 119);
+    border-radius: 10px 10px 0 0;
+}
+
+/* Styly pro nadpis úrovně */
+#lvl-heading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100vw;
+    background-color: rgb(175, 7, 167); /* Barva pozadí nadpisu úrovně */
+    border-radius: 0 0 25px 25px;
+    font-size: 40px;
+    font-weight: 800; /* Tučnost písma */
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 5px; /* Rozestup písmen */
+}
+
+/* Styly pro zobrazení počtu tahů */
+#moves {
+    position: fixed;
+    top: calc(100vh - 80px);
+    width: 150px;
+    height: 30px;
+    left: 10px;
+    font-size: 20px;
+}
+#rules-btn {
+    position: fixed;
+    left: calc(100vw - 200px);
+    top: calc(100vh - 50px);
+    height: 50px;
+    width: 200px;
+    background-color: rgb(175, 7, 167);
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+    font-size: 25px;
+    line-height: 50px;
+    font-weight: 500;
+    }
+    
+    #rules-page {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100px;
+    transition: 0.5s linear;
+    }
+    
+    #rules {
+    position: absolute;
+    margin-left: 450px;
+    margin-top: 300px;
+    height: 300px;
+    width: 1000px;
+    background-image: url("../img/pravidla.jpg");
+    border-radius: 10px;
+    }
+    
+    #rules-heading {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    height: 30px;
+    width: 100%;
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+    }
+    
+    #rules-text {
+    position: absolute;
+    top: 70px;
+    left: 5%;
+    width: 90%;
+    font-size: 20px;
+    height: calc(100vh - 200px - 150px);
+    overflow-x: hidden;
+    }
+    
+    #back {
+    position: absolute;
+    top: calc(100% - 120px + 65px + 10px);
+    height: 40px;
+    width: 100px;
+    left: calc(100% - 100px);
+    background-color: rgb(175, 7, 167);
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 10px 0 0 10px;
+    }
+    
+    #alert-button:hover {
+    background-color: rgb(124, 7, 118);
+    }
+    #box{
+    background-color: whitesmoke;
+    opacity: 50%;
+    }
