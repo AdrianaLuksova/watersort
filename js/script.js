@@ -229,7 +229,7 @@ for (let i of water) {
     }
 }
 won = true;
-level.innerHTML = `<div id="won">VYHRAL JSI <img src="../img/giphy.gif" alt="tancujici hello kitty"><div id="restart" class="game-buttons" onclick="Restart();">RESTART</div><div id="home" class="game-buttons" onclick="ShowMenu();">HOME</div>`;
+level.innerHTML = `<div id="won">VYHRAL JSI <img src="./img/giphy.gif" alt="tancujici hello kitty"><div id="restart" class="game-buttons" onclick="Restart();">RESTART</div><div id="home" class="game-buttons" onclick="ShowMenu();">HOME</div>`;
 }
 
 // Funkce pro zamíchání barev
