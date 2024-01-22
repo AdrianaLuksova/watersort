@@ -192,8 +192,10 @@ function Transfer(a, b) {
 //animace oddeleni dilu vody ze zkumavky
 function WaterDec(p,a,count) {
     p[1] = 3-p[1];
+    // Pridani noveho prazdneho bileho pozadi na misto, kde se bude odebrana voda zobrazovat
     document.getElementsByClassName("test-tube")[a].innerHTML += `<div id = "white-bg" style = "top:calc(10px + ${p[1]*30}px - 1px);"></div>`;
     setTimeout(function() {document.getElementById("white-bg").style.height = count*30+1 + "px";},50);
+    // Po dokonceni animace vraceni nadoby do puvodniho stavu.
     setTimeout(function() {
         document.getElementsByClassName("test-tube")[a].innerHTML = `
             <div class="colors" style = "background-color:${water[a][0]};top:100px;"></div>
@@ -206,7 +208,9 @@ function WaterDec(p,a,count) {
 function WaterInc(p, q, b, count) {
 q[1] = 4 - q[1];
 q[1] -= (q[0]!="transparent" ? 1 : 0);
+    //pridani noveho pozadi do zkumavky (pozadi reprezentuje novou vodu) 
 document.getElementsByClassName("test-tube")[b].innerHTML += `<div id="colorful-bg" style="background-color:${p[0]};top:calc(10px + ${q[1]*30}px);"></div>`;
+    //nastaveni vysky a pozice noveho pozadi(simuluje pridavani vody)
 setTimeout(function() {
     document.getElementById("colorful-bg").style.height = count*30+1 + "px";
     document.getElementById("colorful-bg").style.top = `calc(10px + ${q[1]*30}px - ${count*30}px)`;
@@ -226,13 +230,14 @@ window.ShowMenu = function() {
 document.getElementById("level").style.display = "none";
 }
 
-// Funkce pro kontrolu výhry
+// Funkce pro kontrolu výhry, pokud se barvy shoduji
 function Won() {
 for (let i of water) {
     if (i[0] != i[1] || i[1] != i[2] || i[2] != i[3]) {
         return;
     }
 }
+    //vlozi do html text pokud vyhrajete
 won = true;
 level.innerHTML = `<div id="won">VYHRAL JSI <img src="./img/giphy.gif" alt="tancujici hello kitty"><div id="restart" class="game-buttons" onclick="Restart();">RESTART</div><div id="home" class="game-buttons" onclick="ShowMenu();">HOME</div>`;
 }
