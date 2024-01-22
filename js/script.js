@@ -1,7 +1,7 @@
-//zvoleni barev
+//zvoleni barev velikosti atd
 var game, level, color=["hotpink","Blueviolet","plum","lightskyblue","tomato","orchid","lightblue","orange","brown","pink"], water=[], w=[], currentLevel, clicked=[], transferring=false, t=false, size=1, sizechange=0.05, won=false, moves=0;
 
-//Pozice zkumavek pro různé úrovně hry
+//Pozice zkumavek pro různé úrovně hry (souradnice)
 var testTubePosition = {
     0: [[-110,130], [-20, 130], [70, 130], [-65,320], [15, 320]],
     1: [[-110,130], [-20, 130], [70, 130],[-110,320], [-20, 320], [70, 320]],
@@ -126,14 +126,18 @@ function Transfer(a, b) {
     let p, q, r=false, s=false, count=0, c=0;
 
     //pravidla pro prenaseni vody
+    //platí pro kazdy prvek vc poli water[a] a water[b]
     for (let i = 0; i < 4; i++) {
+        //podminka pro vodu v prvni zkumavce water[a]
         if (((water[a][i]!="transparent" && water[a][i+1]=="transparent") || i === 3) && !r) {
             r = true;
             p = [water[a][i], i];
+            //kontrola pruhlednosti nebo zda se v poli nachazi shoda
             if (water[a].map(function(x) {
                 if (x=="transparent" || x==p[0]) {return 1;} else {return 0;}
             }).reduce((x,y) => x + y) === 4) {
                 p.push(i+1);
+                // hledani shody v poli
             } else {
                 for (let j = 1; j < 4; j++) {
                     if (i - j >= 0 && water[a][i - j] != p[0]) {
@@ -143,19 +147,19 @@ function Transfer(a, b) {
                 }
             }
         }
-
+        //podmínka pro vodu v druhe nadobe water[b]
         if (((water[b][i]!="transparent" && water[b][i+1]=="transparent") || water[b][0]=="transparent") && !s) {
             s = true;
             q = [water[b][i], i, water[b].map((x) => x = (x == "transparent") ? 1 : 0).reduce((x,y) => x + y)];
         }
     }
-
+    //kontrola zda se voda v obou polich shoduje
     if (q[0]!="transparent" && p[0]!=q[0]) {
         moves -= 1;
         document.getElementById("moves").innerHTML = "Moves: " + moves;
         return;
     }
-
+    //odebrani vody z prvni zkumavky
     for (let i = 3; i >= 0; i--) {
         if ((water[a][i] == p[0] || water[a][i] == "transparent") && count < q[2]) {
             if (water[a][i] == p[0]) {
@@ -166,18 +170,19 @@ function Transfer(a, b) {
             break;
         }
     }
-
+    // nastaveni hodnoty count do c, takze co prenasime
     c = count;
+    //zpozdene nacasovane funkce
     setTimeout(function() { WaterDec(p, a, c); }, 1010);
     setTimeout(function() { WaterInc(p, q, b, c); }, 1010);
-
+    //pridani vody do druhe zkumavky
     for (let i = 0; i < 4; i++) {
         if (water[b][i] == "transparent" && count > 0) {
             count--;
             water[b][i] = p[0];
         }
     }
-
+    //zpozdene nacasovane funkce a Won
     setTimeout(function() { ApplyInfo(); }, 3020);
     setTimeout(function() { TransferAnim(a, b); }, 10);
     setTimeout(Won, 3000);
